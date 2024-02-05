@@ -34,3 +34,20 @@ def test_turn_left(starting_direction, final_direction):
     assert rover.position.x == 3
     assert rover.position.y == 7
     assert rover.position.direction == final_direction
+
+
+@pytest.mark.parametrize(
+    'starting_direction, final_direction',
+    [
+        ("N", "E"),
+        ("E", "S"),
+        ("S", "W"),
+        ("W", "N"),
+    ],
+)
+def test_turn_right(starting_direction, final_direction):
+    rover = Rover(Grid(10, 10), Position(3, 7, "N"))
+    rover.turn_right()
+    assert rover.position.x == 3
+    assert rover.position.y == 7
+    assert rover.position.direction == "E"

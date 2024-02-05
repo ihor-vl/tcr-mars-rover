@@ -31,3 +31,11 @@ class Rover:
             self.position.y,
             direction=directions[self.position.direction]
         )
+
+    def turn_right(self) -> None:
+        directions = {"N": "E", "E": "S", "S": "W", "W": "N"}
+        self.position = Position(
+            self.position.x,
+            self.position.y,
+            direction=directions[self.position.direction]
+        )
