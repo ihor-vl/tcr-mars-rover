@@ -87,3 +87,33 @@ class Rover:
                 self.turn_right()
             else:
                 continue
+
+
+def run():
+    gird_x = int(input("Enter the grid x: "))
+    if gird_x < 1:
+        raise ValueError("Grid x should be greater than 0")
+    grid_y = int(input("Enter the grid y: "))
+    if grid_y < 1:
+        raise ValueError("Grid y should be greater than 0")
+    grid = Grid(gird_x, grid_y)
+    x = int(input("Enter the x position of the rover: "))
+    if x < 1:
+        raise ValueError("Rover x should be greater than 0")
+    elif x > gird_x:
+        raise ValueError("Rover x should be less than grid x")
+    y = int(input("Enter the y position of the rover: "))
+    if y < 1:
+        raise ValueError("Rover y should be greater than 0")
+    elif y > grid_y:
+        raise ValueError("Rover y should be less than grid y")
+    direction = input("Enter the direction of the rover: ")
+    if direction.upper() not in ["N", "E", "S", "W"]:
+        raise ValueError("Direction should be N, E, S or W")
+    position = Position(x, y, direction)
+    rover = Rover(grid, position)
+    print(rover.state())
+
+
+if __name__ == "__main__":
+    run()
