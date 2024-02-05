@@ -59,3 +59,16 @@ class Rover:
             self.position.y,
             direction=directions[self.position.direction]
         )
+
+    def follow_instructions(self, instructions: str) -> None:
+        for instruction in instructions:
+            if instruction.upper() == "F":
+                self.move_forward()
+            if instruction.upper() == "B":
+                self.move_backward()
+            elif instruction.upper() == "L":
+                self.turn_left()
+            elif instruction.upper() == "R":
+                self.turn_right()
+            else:
+                continue

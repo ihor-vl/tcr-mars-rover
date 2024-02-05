@@ -73,3 +73,26 @@ def test_turn_right(starting_direction, final_direction):
     assert rover.position.x == 3
     assert rover.position.y == 7
     assert rover.position.direction == final_direction
+
+
+@pytest.mark.parametrize(
+    'starting_position, instructions, final_position',
+    [
+        (Position(3, 7, "E"), "F", Position(4, 7, "E")),
+        (Position(3, 7, "E"), "B", Position(2, 7, "E")),
+        (Position(3, 7, "E"), "L", Position(3, 7, "N")),
+        (Position(3, 7, "E"), "R", Position(3, 7, "S")),
+        (Position(3, 7, "N"), "F", Position(3, 8, "N")),
+        (Position(3, 7, "N"), "B", Position(3, 6, "N")),
+        (Position(3, 7, "N"), "L", Position(3, 7, "W")),
+        (Position(3, 7, "N"), "R", Position(3, 7, "E")),
+        (Position(3, 7, "S"), "F", Position(3, 6, "S")),
+        (Position(3, 7, "S"), "B", Position(3, 8, "S")),
+        (Position(3, 7, "S"), "L", Position(3, 7, "E")),
+    ],
+)
+def test_follow_single_instructions(starting_position, instructions, final_position):
+    rover = Rover(Grid(10, 10), starting_position)
+    rover.follow_instructions(instructions)
+    assert rover.position == final_position
+
