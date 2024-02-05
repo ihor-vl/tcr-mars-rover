@@ -53,8 +53,8 @@ def test_turn_left(starting_direction, final_direction):
     ],
 )
 def test_turn_right(starting_direction, final_direction):
-    rover = Rover(Grid(10, 10), Position(3, 7, "N"))
+    rover = Rover(Grid(10, 10), Position(3, 7, starting_direction))
     rover.turn_right()
     assert rover.position.x == 3
     assert rover.position.y == 7
-    assert rover.position.direction == "E"
+    assert rover.position.direction == final_direction
