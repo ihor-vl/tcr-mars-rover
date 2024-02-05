@@ -11,12 +11,19 @@ def test_rover_status():
     assert rover.state() == "X: 3 Y: 7  Direction: E"
 
 
-def test_move_forward():
-    rover = Rover(Grid(10, 10), Position(3, 7, "N"))
+@pytest.mark.parametrize(
+    'starting_position, final_position',
+    [
+        (Position(3, 7, "N"), Position(3, 8, "N")),
+        (Position(3, 7, "S"), Position(3, 6, "S")),
+        (Position(3, 7, "E"), Position(4, 7, "E")),
+        (Position(3, 7, "W"), Position(2, 7, "W")),
+    ],
+)
+def test_move_forward(starting_position: Position, final_position: Position):
+    rover = Rover(Grid(10, 10), starting_position)
     rover.move_forward()
-    assert rover.position.x == 3
-    assert rover.position.y == 8
-    assert rover.position.direction == "N"
+    assert rover.position == final_position
 
 
 @pytest.mark.parametrize(

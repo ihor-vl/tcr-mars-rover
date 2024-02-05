@@ -22,7 +22,17 @@ class Rover:
         return f"X: {self.position.x} Y: {self.position.y}  Direction: {self.position.direction}"
 
     def move_forward(self) -> None:
-        self.position = Position(self.position.x, self.position.y + 1, direction=self.position.direction)
+        x, y, d = self.position
+        if d == "N":
+            y += 1
+        elif d == "S":
+            y -= 1
+        elif d == "E":
+            x += 1
+        elif d == "W":
+            x -= 1
+
+        self.position = Position(x=x, y=y, direction=d)
 
     def turn_left(self) -> None:
         self.turn({"N": "W", "W": "S", "S": "E", "E": "N"})
