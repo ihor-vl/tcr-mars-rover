@@ -18,6 +18,10 @@ def test_rover_status():
         (Position(3, 7, "S"), Position(3, 6, "S")),
         (Position(3, 7, "E"), Position(4, 7, "E")),
         (Position(3, 7, "W"), Position(2, 7, "W")),
+        (Position(10, 10, "N"), Position(10, 1, "N")),
+        (Position(1, 1, "S"), Position(1, 10, "S")),
+        (Position(10, 10, "E"), Position(1, 10, "E")),
+        (Position(1, 1, "W"), Position(10, 1, "W")),
     ],
 )
 def test_move_forward(starting_position: Position, final_position: Position):
@@ -33,6 +37,10 @@ def test_move_forward(starting_position: Position, final_position: Position):
         (Position(3, 7, "S"), Position(3, 8, "S")),
         (Position(3, 7, "E"), Position(2, 7, "E")),
         (Position(3, 7, "W"), Position(4, 7, "W")),
+        (Position(1, 1, "N"), Position(1, 10, "N")),
+        (Position(10, 10, "S"), Position(10, 1, "S")),
+        (Position(1, 1, "E"), Position(10, 1, "E")),
+        (Position(10, 10, "W"), Position(1, 10, "W")),
     ],
 )
 def test_move_backward(starting_position: Position, final_position: Position):

@@ -21,6 +21,19 @@ class Rover:
     def state(self) -> str:
         return f"X: {self.position.x} Y: {self.position.y}  Direction: {self.position.direction}"
 
+    def _check_new_position(self, x, y):
+        if x > self.grid.x:
+            x = 1
+        elif x < 1:
+            x = self.grid.x
+
+        if y > self.grid.y:
+            y = 1
+        elif y < 1:
+            y = self.grid.y
+
+        return x, y
+
     def move_forward(self) -> None:
         x, y, d = self.position
         if d == "N":
@@ -32,6 +45,7 @@ class Rover:
         elif d == "W":
             x -= 1
 
+        x, y = self._check_new_position(x, y)
         self.position = Position(x=x, y=y, direction=d)
 
     def move_backward(self) -> None:
@@ -45,6 +59,7 @@ class Rover:
         elif d == "W":
             x += 1
 
+        x, y = self._check_new_position(x, y)
         self.position = Position(x=x, y=y, direction=d)
 
     def turn_left(self) -> None:
