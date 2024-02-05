@@ -25,15 +25,12 @@ class Rover:
         self.position = Position(self.position.x, self.position.y + 1, direction=self.position.direction)
 
     def turn_left(self) -> None:
-        directions = {"N": "W", "W": "S", "S": "E", "E": "N"}
-        self.position = Position(
-            self.position.x,
-            self.position.y,
-            direction=directions[self.position.direction]
-        )
+        self.turn({"N": "W", "W": "S", "S": "E", "E": "N"})
 
     def turn_right(self) -> None:
-        directions = {"N": "E", "E": "S", "S": "W", "W": "N"}
+        self.turn({"N": "E", "E": "S", "S": "W", "W": "N"})
+
+    def turn(self, directions: dict):
         self.position = Position(
             self.position.x,
             self.position.y,
