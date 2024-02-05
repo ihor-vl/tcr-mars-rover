@@ -27,6 +27,21 @@ def test_move_forward(starting_position: Position, final_position: Position):
 
 
 @pytest.mark.parametrize(
+    'starting_position, final_position',
+    [
+        (Position(3, 7, "N"), Position(3, 6, "N")),
+        (Position(3, 7, "S"), Position(3, 8, "S")),
+        (Position(3, 7, "E"), Position(2, 7, "E")),
+        (Position(3, 7, "W"), Position(4, 7, "W")),
+    ],
+)
+def test_move_backward(starting_position: Position, final_position: Position):
+    rover = Rover(Grid(10, 10), starting_position)
+    rover.move_backward()
+    assert rover.position == final_position
+
+
+@pytest.mark.parametrize(
     'starting_direction, final_direction',
     [
         ("N", "W"),

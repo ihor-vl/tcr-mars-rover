@@ -34,6 +34,19 @@ class Rover:
 
         self.position = Position(x=x, y=y, direction=d)
 
+    def move_backward(self) -> None:
+        x, y, d = self.position
+        if d == "N":
+            y -= 1
+        elif d == "S":
+            y += 1
+        elif d == "E":
+            x -= 1
+        elif d == "W":
+            x += 1
+
+        self.position = Position(x=x, y=y, direction=d)
+
     def turn_left(self) -> None:
         self.turn({"N": "W", "W": "S", "S": "E", "E": "N"})
 
