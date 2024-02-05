@@ -23,3 +23,11 @@ class Rover:
 
     def move_forward(self) -> None:
         self.position = Position(self.position.x, self.position.y + 1, direction=self.position.direction)
+
+    def turn_left(self) -> None:
+        directions = {"N": "W", "W": "S", "S": "E", "E": "N"}
+        self.position = Position(
+            self.position.x,
+            self.position.y,
+            direction=directions[self.position.direction]
+        )
